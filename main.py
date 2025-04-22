@@ -59,12 +59,15 @@ def manual_test(prompt, train):
                 prop = float(xd[prompt[i]])
             except KeyError:
                 flat = False
+                print("Before smoothing:", 0)
                 prop = 1 / (40 + len(xd.keys()))
+                print("After smoothing:", prop)
             co.append(prop)
-        print("Before smoothing:", co)
+
         if flat:
+            print("Before smoothing:", co)
             co[0] = co[0] + 1/ (40 + length)
-        print("After smoothing:", co)
+            print("After smoothing:", co)
         for c in co:
             suma *= c
         mval[label] = suma
